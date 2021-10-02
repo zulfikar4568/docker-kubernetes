@@ -1,3 +1,7 @@
+# Issue Permission
+[Issue Permission in Node](https://github.com/nodejs/docker-node/issues/740)<br>
+In Dockerfile Backend we specify `FROM node`, this will get an error if we want to read certain file inside their, so istead we must change path to `FROM node:14-alpine`, this is might be issue in the **latest version**
+
 # Running MongoDB
 > Expose mongodb to our localhost
 ```bash
@@ -51,7 +55,7 @@ docker run --name goals-backend --rm -d -p 80:80 goals-node
 
 # Dockerizing React App
 ```dockerfile
-FROM node
+FROM node:14-alpine
 
 WORKDIR /app
 
@@ -164,7 +168,7 @@ add nodemon in package.json
 
 and change Dockerfile
 ```dockerfile
-FROM node
+FROM node:14-alpine
 
 WORKDIR /app
 
