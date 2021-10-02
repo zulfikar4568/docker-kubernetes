@@ -1,4 +1,4 @@
-```
+```bash
 docker build .
 
 docker run -it <ID_Image>

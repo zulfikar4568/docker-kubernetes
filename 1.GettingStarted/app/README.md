@@ -1,4 +1,4 @@
-```
+```bash
 docker build .
 
 docker run -p 3000:3000 90a7a6d5b18a
