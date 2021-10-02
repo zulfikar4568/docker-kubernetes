@@ -4,7 +4,7 @@ services:
     image: 'mongo'
     volumes:
       - data:/data/db
-    # container_name: mongodb
+    container_name: mongodb
     # environment:
       # MONGO_INITDB_ROOT_USERNAME: max
       # MONGO_INITDB_ROOT_PASSWORD: secret
@@ -15,7 +15,7 @@ services:
     #   - goals-net
   backend:
     build: ./backend
-    # container_name: goals-backend
+    container_name: goals-backend
     # build:
     #   context: ./backend
     #   dockerfile: Dockerfile
@@ -33,7 +33,7 @@ services:
       - mongodb
   frontend:
     build: ./frontend
-    # container_name: goals-frontend
+    container_name: goals-frontend
     ports:
       - '3000:3000'
     volumes:
