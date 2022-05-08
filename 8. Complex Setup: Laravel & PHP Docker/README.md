@@ -1,101 +1,68 @@
-# Adding Nginx Container
-```yaml
-version: "3.8"
-services:
-  server:
-    image: 'nginx:stable-alpine'
-    ports:
-      - '8080:80'
-    volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+Visit my repository [docker-laravel](https://github.com/zulfikar4568/docker-laravel)
+
+Make sure you have:
+* docker
+* docker-compose </br>
+If you doesn't have please install first in [Official Docker](https://docs.docker.com/engine/).
+```
+docker --version
+docker-compose --version
+```
+You should be get like this, if have
+```
+Docker version 20.10.12, build e91ed57
+docker-compose version 1.29.2, build 5becea4c
 ```
 
-# Adding PHP Container
-```dockerfile
-FROM php:7.4-fpm-alpine
-
-WORKDIR /var/www/html
-
-RUN docker-php-ext-install pdo pdo_mysql
+Clone this repository using this in your folder
 ```
-
-```yaml
-  php:
-    build:
-      context: ./dockerfiles
-      dockerfile: php.dockerfile
-    volumes:
-      - ./src:/var/www/html:delegated
+git clone https://github.com/zulfikar4568/docker-laravel.git
 ```
+## Creating Laravel Application via Utility Composer
 
-# Adding MYSQL
-```yaml
-  mysql:
-    image: mysql:5.7
-    env_file:
-      - ./env/mysql.env
-```
-```conf
-MYSQL_DATABASE=homestead
-MYSQL_USER=homestead
-MYSQL_PASSWORD=secret
-MYSQL_ROOT_PASSWORD=secret
-```
-
-# Adding Composer
-```yaml
-  composer:
-    build:
-      context: ./dockerfiles
-      dockerfile: composer.dockerfile
-    volumes:
-      - ./src:/var/www/html
-```
-
-```dockerfile
-FROM composer:latest
-
-WORKDIR /var/www/html
-
-ENTRYPOINT [ "composer", "--ignore-platform-reqs" ]
-```
-
-# Creating Laravel via Container utility docker
 ```bash
 docker-compose run --rm composer create-project --prefer-dist laravel/laravel .
 ```
+After we execute above command we will see the our Laravel files in `src` folder
 
-# Fixing Error (Optional if you got an error)
-When using Docker on Linux, you might face permission errors when adding a bind mount as shown in the next lecture.
-change `php.dockerfile` like this
-```dockerfile
-FROM php:7.4-fpm-alpine
- 
-WORKDIR /var/www/html
- 
-COPY src .
- 
-RUN docker-php-ext-install pdo pdo_mysql
- 
-RUN addgroup -g 1000 laravel && adduser -G laravel -g laravel -s /bin/sh -D laravel
- 
-USER laravel
-```
-change composer.dockerfile like this
-```dockerfile
-FROM composer:latest
- 
-RUN addgroup -g 1000 laravel && adduser -G laravel -g laravel -s /bin/sh -D laravel
- 
-USER laravel
- 
-WORKDIR /var/www/html
- 
-ENTRYPOINT [ "composer", "--ignore-platform-reqs" ]
+## Run the Laravel Application
+
+You need setup the Laravel config, open and edit `src/.env`
+
+```config
+DB_CONNECTION=mysql
+DB_HOST=mysql
+DB_PORT=3306
+DB_DATABASE=homestead
+DB_USERNAME=homestead
+DB_PASSWORD=secret
 ```
 
+> Using this command when we will an updated the images
 ```bash
-docker-compose run --rm composer create-project --prefer-dist laravel/laravel .
+docker-compose up -d --build server
+```
+> Otherwise we can use this command, that will not updated a images
+```bash
+docker-compose up -d server
+```
+Open `localhost:8000`. Congratulations you've get the Laravel up and running wihout install dependencies in your host instead in our docker files.
+## Error when running Laravel Application (Optional)
+If you get an error like this `
+The stream or file "/var/www/html/storage/logs/laravel.log" could not be opened in append mode: Failed to open stream: Permission denied`. This problem facing with your permission. Try using this command:
+```
+sudo chmod -R 777 ./src
+```
 
-docker-compose up -d --build
+## Doing Migration via Utility Artisan
+Make sure container up & running, and type this command:
+```
+docker-compose run --rm artisan migrate
+```
+
+## Deploying Laravel Application
+
+```
+git checkout production
+docker-compose up -d --build server
 ```

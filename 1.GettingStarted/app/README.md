@@ -1,3 +1,5 @@
+# Running our first application
+
 ```bash
 docker build .
 
