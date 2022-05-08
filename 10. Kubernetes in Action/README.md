@@ -187,3 +187,261 @@ kubectl rollout history deployment/first-app
 kubectl delete service first-app
 kubectl delete deployment first-app
  ```
+
+ # Using Declarative Approach
+
+ ## Creating resource
+
+Create yaml configuration for Deployment, as an example `deployment.yaml`
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: second-app-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: second-app
+      tier: backend
+  template:
+    metadata:
+      labels:
+        app: second-app
+        tier: backend
+    spec:
+      containers:
+        - name: second-node
+          image: zulfikar4568/kub-first-app
+        # - name: ....
+        #   image: ...
+```
+Apply config to Kubernetes
+```bash
+kubectl apply -f=deployment.yaml
+kubectl get deployments
+kubectl get pods
+```
+
+Create yaml for Service, as an example `service.yaml`
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+spec:
+  selector:
+    app: second-app
+  ports:
+    - protocol: 'TCP'
+      port: 80
+      targetPort: 8080
+    # - protocol: 'TCP'
+    #   port: 443
+    #   targetPort: 443
+  type: LoadBalancer
+```
+
+Apply config to Kubernetes
+```bash
+kubectl apply -f service.yaml
+```
+
+## Updating and Deleting Resource
+
+We change first the yaml file for example
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: second-app-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: second-app
+      tier: backend
+  template:
+    metadata:
+      labels:
+        app: second-app
+        tier: backend
+    spec:
+      containers:
+        - name: second-node
+          image: zulfikar4568/kub-first-app:2
+        # - name: ....
+        #   image: ...
+```
+
+Apply config to Kubernetes
+```bash
+kubectl apply -f=deployment.yaml
+kubectl get deployments
+kubectl get pods
+```
+
+Delete a Resource
+
+```bash
+kubectl delete -f=deployment.yaml -f=service.yaml
+#or
+kubectl delete -f=deployment.yaml,service.yaml
+```
+
+## Merge deployment and service into Single file
+
+Create config `master-deployment.yaml`
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+spec:
+  selector:
+    app: second-app
+  ports:
+    - protocol: 'TCP'
+      port: 80
+      targetPort: 8080
+    # - protocol: 'TCP'
+    #   port: 443
+    #   targetPort: 443
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: second-app-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: second-app
+      tier: backend
+  template:
+    metadata:
+      labels:
+        app: second-app
+        tier: backend
+    spec:
+      containers:
+        - name: second-node
+          image: zulfikar4568/kub-first-app
+        # - name: ....
+        #   image: ...
+```
+
+Apply config to Kubernetes
+```bash
+kubectl apply -f=master-deployment.yaml
+kubectl get deployments
+kubectl get pods
+```
+
+## More on Labels and Selector
+
+You can use matchExpressions if want selector more advance, We add labels group=example that both having
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+  labels:
+    group: example
+spec:
+  selector:
+    app: second-app
+  ports:
+    - protocol: 'TCP'
+      port: 80
+      targetPort: 8080
+    # - protocol: 'TCP'
+    #   port: 443
+    #   targetPort: 443
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: second-app-deployment
+  labels:
+    group: example
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: second-app
+      tier: backend
+    # matchExpressions:
+    #   - { key: app, operator: In, values: [second-app, first-app] }
+  template:
+    metadata:
+      labels:
+        app: second-app
+        tier: backend
+    spec:
+      containers:
+        - name: second-node
+          image: zulfikar4568/kub-first-app
+          # resources:
+          #   limits:
+          #     memory: 512Mi
+          #     cpu: "1"
+          #   requests:
+          #     memory: 256Mi
+          #     cpu: "0.2"
+        # - name: ....
+        #   image: ...
+```
+
+Apply config to Kubernetes
+```bash
+kubectl apply -f=master-deployment.yaml
+```
+
+Delete a Resource by labels
+```bash
+kubectl delete deployments,services -l group=example
+```
+
+## Liveness Probe
+
+Liveness probe is used to check healty of your container whether down or up and running
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: second-app-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: second-app
+      tier: backend
+  template:
+    metadata:
+      labels:
+        app: second-app
+        tier: backend
+    spec:
+      containers:
+        - name: second-node
+          image: zulfikar4568/kub-first-app
+          imagePullPolicy: Always # Always pull the latest images
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            periodSeconds: 3
+            initialDelaySeconds: 1
+        # - name: ....
+        #   image: ...
+```
+
+Apply config to Kubernetes
+```bash
+kubectl apply -f=deployment.yaml,service.yaml
+```
