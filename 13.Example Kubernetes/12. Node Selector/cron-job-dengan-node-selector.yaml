@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: nodejs-cronjob
+  labels:
+    name: nodejs-cronjob
+spec:
+  schedule: "* * * * *"
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          name: nodejs-cronjob
+          labels:
+            name: nodejs-cronjob
+        spec:
+          nodeSelector:
+            ssd: "true"
+          restartPolicy: Never
+          containers:
+          - name: nodejs-cronjob
+            image: zulfikar4568/nodejs-job 
