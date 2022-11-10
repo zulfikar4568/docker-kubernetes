@@ -1,0 +1,21 @@
+@startuml Pod
+
+node "CLuster Kubernetes" {
+  node "Node 1" {
+    node "Pod 1" as N1P1 {
+      [Container 1] as C1N1P1
+      [Container 2] as C2N1P1
+    }
+    node "Pod 2" as N1P2 {
+      [Container 1] as C1N1P2
+    }
+  }
+  node "Node 2" {
+    node "Pod 1" as N2P1 {
+      [Container 1] as C1N2P1
+      [Container 2] as C2N2P1
+    }
+  }
+}
+
+@enduml

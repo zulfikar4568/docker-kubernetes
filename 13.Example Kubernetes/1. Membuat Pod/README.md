@@ -1,3 +1,4 @@
+![](./Pod.png)
 ## Buat Pod
 ```bash
 kubectl create -f nginx.yaml

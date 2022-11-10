@@ -1,3 +1,5 @@
+![](LoadBalancer.png)
+
 Load Balancer akan meneruskan request ke beberapa node secara balanced
 
 Jalankan Service

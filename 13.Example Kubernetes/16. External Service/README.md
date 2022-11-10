@@ -1,3 +1,5 @@
+![](./ExternalService.png)
+
 Biasanya Service digunakan sebagai gateway untuk internal Pod
 Tapi Service juga bisa digunakan sebagai gateway untuk aplikasi eksternal yang berada diluar kubernetes cluster.
 

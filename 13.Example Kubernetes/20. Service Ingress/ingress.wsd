@@ -1,0 +1,29 @@
+@startuml Ingress
+node "Kubernetes Cluster" {
+  node "Node 1" as N1 {
+    node "Pod 1 - 2" as N1P1
+    node "Pod 2 - 2" as N1P2
+  }
+  node "Node 2" as N2 {
+    node "Pod 1 - 1" as N2P1
+    node "Pod 2 - 1" as N2P2
+    node "Pod 2 - 3" as N2P3
+  }
+
+  node "Ingress" as I
+
+  [Service Ingress 1] as SI1
+  [Service Ingress 2] as SI2
+  SI1 --> N1P1
+  SI1 --> N1P2
+  SI1 --> N2P1
+  SI2 --> N2P2
+  SI2 --> N2P3
+}
+
+node Client as C
+
+C --> I
+I --> SI1 : "example1.com"
+I --> SI2 : "example2.com"
+@enduml

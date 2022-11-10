@@ -1,3 +1,4 @@
+![](DirectAccessPod.png)
 ## Menggunakan ENV variable
 ```bash
 kubectl exec curl -- env

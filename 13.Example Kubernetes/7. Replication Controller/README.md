@@ -1,3 +1,5 @@
+![](Replica.png)
+
 ## Membuat Replication Controller
 ```bash
 kubectl create -f nginx-rc.yaml

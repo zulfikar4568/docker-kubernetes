@@ -1,0 +1,15 @@
+@startuml Daemon
+node "Node 1" {
+  node "Pod 1" as N1P1
+  node "Daemon Pod" as N1DP
+}
+node "Node 2" {
+  node "Pod 1" as N2P1
+  node "Daemon Pod" as N2DP
+}
+
+[Daemon Set] as DS
+
+DS --> N1DP
+DS --> N2DP
+@enduml

@@ -1,0 +1,24 @@
+@startuml ExposeService
+node "Kubernetes Cluster" {
+  node "Node 1" as N1 {
+    node "Pod Service A" as N1P1
+    node "Pod Client" as N1P2
+    node "Pod Service B" as N1P3
+  }
+  node "Node 2" as N2 {
+    node "Pod Service B" as N2P3
+    node "Pod Service A" as N2P1
+    node "Pod Service A" as N2P2
+  }
+
+  [Service] as S
+
+  N1P2 --> S
+  S --> N1P1
+  S --> N2P1
+  S --> N2P2
+}
+
+[Mobile App] as MA
+MA --> S : "Bagaimana caranya?"
+@enduml

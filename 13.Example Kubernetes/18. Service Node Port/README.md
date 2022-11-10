@@ -1,3 +1,5 @@
+![](NodePort.png)
+
 Node Port digunakan untuk mengakses service dari luar Cluster melalui IP node
 https://minikube.sigs.k8s.io/docs/handbook/accessing/
 

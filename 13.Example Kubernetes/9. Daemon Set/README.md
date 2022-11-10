@@ -1,5 +1,7 @@
 Daemont Set akan membuat pod sebanyak dengan node nya
 
+![](./Daemon.png)
+
 ## Membuat Daemon Set
 ```bash
 kubectl create -f nginx-daemon-set.yaml

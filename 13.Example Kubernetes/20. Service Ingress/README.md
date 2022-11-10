@@ -1,3 +1,5 @@
+![](./Ingress.png)
+
 ## Masalah Node Port dan Load Balancer
 - Jika menggunakan NodePort
   - maka semua Node harus terekspos ke public

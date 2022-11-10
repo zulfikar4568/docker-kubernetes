@@ -1,3 +1,5 @@
+![](ExposeService.png)
+
 Kadang ada kebutuhan kita perlu untuk mengekspos service keluar, contoh nya mobile app yang di install di local HP
 Tujuannya adalah agar aplikasi dari luar kubernetes cluster bisa mengakses Pod yang berada di belakang service tersebut
 

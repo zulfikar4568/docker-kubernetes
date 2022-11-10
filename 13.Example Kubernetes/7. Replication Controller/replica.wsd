@@ -1,0 +1,16 @@
+@startuml Replica
+node "Node 1" as N1{
+  node "Pod A" as N1P1
+  node "Pod A" as N1P2
+}
+
+node "Node 2" as N2 {
+  node "Pod A" as N2P1
+}
+
+[Replica Controller] as RC
+
+RC --> N1P1
+RC --> N2P1
+RC --> N1P2
+@enduml
