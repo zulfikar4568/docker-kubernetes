@@ -1,5 +1,12 @@
 # Monitor and Output Logs to a File in Kubernetes
 
+![image](https://github.com/zulfikar4568/docker-kubernetes/assets/64786139/c9f30100-ca96-4096-b834-a77e026a1991)
+
+Objective:
+- Identify the problematic pod in your cluster.
+- Collect the logs from the pod.
+- Output the logs to a file.
+
 ## Identify the problematic pod in your cluster.
 1. Use the following command to view all the pods in your cluster:
 ```bash
