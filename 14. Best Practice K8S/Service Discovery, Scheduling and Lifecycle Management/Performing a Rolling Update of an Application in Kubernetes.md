@@ -1,6 +1,12 @@
 # Performing a Rolling Update of an Application in Kubernetes
 you are provided with a 3-node cluster. Within that cluster, you must deploy an application and then successfully update the application to a new version without causing any downtime.
 
+Objective:
+- Create and Roll Out Version 1 of the Application, and Verify a Successful Deployment
+- Scale Up the Application to Create High Availability
+- Create a Service So Users Can Access the Application
+- Perform a Rolling Update to Version 2 of the Application, and Verify Its Success
+
 ```bash
 kubectl get nodes
 ```
