@@ -1,7 +1,15 @@
 # Creating a ClusterRole to Access a PV in Kubernetes
+![image](https://github.com/zulfikar4568/docker-kubernetes/assets/64786139/c8d26225-d1a2-4a4a-aab2-c7ee3d0f0afb)
+
 you will be tasked with accessing a persistent volume from a pod in order to view the available volumes inside the Kubernetes cluster. By default, pods cannot access volumes directly, so you will also need to create a cluster role to provide authorization to the pod. Additionally, you cannot access the API server directly without authentication, so you will need to run kubectl in proxy mode to retrieve information about the volumes.
 
 The first container, using the image **tutum/curl**, will allow you to use curl to directly access the Kubernetes REST API.
+
+Objective:
+- View the Persistent Volume
+- Create a ClusterRole and ClusterRoleBinding
+- Create a pod to access the PV
+- Request access to the PV from the pod
 
 ## View the Persistent Volume
 1. View the Persistent Volume within the cluster:
