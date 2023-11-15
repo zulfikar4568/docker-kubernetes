@@ -1,8 +1,16 @@
 # Creating a Service and Discovering DNS Names in Kubernetes
+![image](https://github.com/zulfikar4568/docker-kubernetes/assets/64786139/74dcbd37-d79b-4f35-86ef-3e9731cbbb19)
 
 We have been given a three-node cluster. Within that cluster, we must perform the following tasks in order to create a service and resolve the DNS names for that service. We will create the necessary Kubernetes resources in order to perform this DNS query.
 
 To adequately complete this hands-on lab, we must have a working deployment, a working service, and be able to record the DNS name of the service within our Kubernetes cluster.
+
+Objective:
+- Create an nginx deployment, and verify it was successful.
+- Create a service, and verify the service was successful.
+- Create a pod that will allow you to query DNS, and verify it’s been created.
+- Perform a DNS query to the service.
+- Record the DNS name.
 
 ## Create an nginx deployment, and verify it was successful.
 1. Use this command to create an nginx deployment:
