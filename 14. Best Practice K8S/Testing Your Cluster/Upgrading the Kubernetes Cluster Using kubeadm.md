@@ -1,5 +1,14 @@
 # Upgrading the Kubernetes Cluster Using kubeadm
+![image](https://github.com/zulfikar4568/docker-kubernetes/assets/64786139/f27605cc-921e-46cb-a219-27d09c7d6800)
+
 we must perform the upgrade to all of the cluster components, including kube-controller-manager, kube-scheduler, kubeadm, and kubectl.
+
+Objective:
+- Install Version 1.18.5 of kubeadm on Master Node
+- Upgrade Control Plane Components using kubeadm
+- Install Version 1.18.5 of kubelet on Master Node
+- Install Version 1.18.5 of kubectl on Master Node
+- Install Version 1.18.5 of kubelet on The Worker Nodes
 
 ## Install Version 1.18.5 of kubeadm
 1. On the master node, check the current version of kubeadm, then check for the Client Version and Server Version:
