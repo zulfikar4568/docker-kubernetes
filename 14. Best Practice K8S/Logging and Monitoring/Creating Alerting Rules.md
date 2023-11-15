@@ -1,6 +1,12 @@
 # Creating Alerting Rules
+![image](https://github.com/zulfikar4568/docker-kubernetes/assets/64786139/29d860e4-f75c-48e5-8152-d4cc945eb2d1)
 
 After deploying a Prometheus environment to our Kubernetes cluster, the team has decided to test its monitoring capabilities by configuring alerting of our Redis deployment. We have been tasked with writing two alerting rules. The first rule will fire an alert if any of the Redis pods are down for 10 minutes. The second alert will fire if there are no pods available for 1 minute.
+
+Objective:
+- Create a ConfigMap That Will Be Used to Manage the Alerting Rules
+- Apply the Changes Made to `prometheus-rules-config-map.yml`
+- Delete the Prometheus Pod
 
 ## Setup the Alert
 ```bash
