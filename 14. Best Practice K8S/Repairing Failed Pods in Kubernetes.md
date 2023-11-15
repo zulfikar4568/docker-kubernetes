@@ -1,4 +1,8 @@
 # Repairing Failed Pods in Kubernetes
+
+![image](https://github.com/zulfikar4568/docker-kubernetes/assets/64786139/51dc5a37-a87e-446c-8207-49250836d7a1)
+
+
 As a Kubernetes Administrator, you will come across broken pods. Being able to identify the issue and quickly fix the pods is essential to maintaining uptime for your applications running in Kubernetes. In this hands-on lab, you will be presented with a number of broken pods. You must identify the problem and take the quickest route to resolve the problem in order to get your cluster back up and running.
 
 Objective:
