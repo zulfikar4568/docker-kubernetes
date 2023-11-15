@@ -1,10 +1,21 @@
 # Smoke Testing a Kubernetes Cluster
 
+![image](https://github.com/zulfikar4568/docker-kubernetes/assets/64786139/7aef162a-7cbd-492d-ae9e-e4dafdf55b7d)
+
+
 we'll go through the process of performing basic smoke tests on several Kubernetes features, with the goal of verifying the overall health of the cluster. The features we'll test here are ones that are particularly prone to failure when something is wrong with the cluster.
 
 Your team has just finished setting up a new Kubernetes cluster. But before moving your company’s online store to the cluster, they want to make sure the cluster is set up correctly. The team has asked you to run a series of smoke tests against the cluster in order to make sure everything is working.
 
 You can complete most of the steps for this activity on the controller server, so get logged in to the controller. You will only need to log in to one of the workers for part of the Verify that untrusted workloads run using gVisor task.
+
+Objective:
+- Verify the cluster's ability to perform data encryption.
+- Verify that deployments work.
+- Verify that remote access works via port forwarding.
+- Verify that you can access container logs with kubectl logs.
+- Verify that you can execute commands inside a container with `kubectl exec`.
+- Verify that services work.
 
 ## Verify the Cluster's Ability to Perform Data Encryption
 Create some sensitive data and verify it is stored in an encrypted format.
