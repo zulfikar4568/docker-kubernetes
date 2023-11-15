@@ -1,4 +1,6 @@
 # Performing a Rolling Update of an Application in Kubernetes
+![image](https://github.com/zulfikar4568/docker-kubernetes/assets/64786139/6b4e92f0-5fc1-4c82-8db3-575080166bf6)
+
 you are provided with a 3-node cluster. Within that cluster, you must deploy an application and then successfully update the application to a new version without causing any downtime.
 
 Objective:
