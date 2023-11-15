@@ -1,7 +1,17 @@
 # Creating Persistent Storage for Pods in Kubernetes
+![image](https://github.com/zulfikar4568/docker-kubernetes/assets/64786139/62ee2211-eacd-4b0f-886c-df5ca7b4a8ca)
+
 Pods in Kubernetes are ephemeral, which makes the local container filesytem unusable, as you can never ensure the pod will remain. To decouple your storage from your pods, you will be creating a persistent volume to mount for use by your pods. You will be deploying a redis image. You will first create the persistent volume, then create the pod YAML for deploying the pod to mount the volume. You will then delete the pod and create a new pod, which will access that same volume.
 
 To decouple our storage from our pods, we will create a persistent volume to mount for use by our pods. We will deploy a redis image. We will first create the persistent volume, then create the pod YAML for deploying the pod to mount the volume. We will then delete the pod and create a new pod, which will access that same volume.
+
+Objective:
+- Create a PersistentVolume.
+- Create a PersistentVolumeClaim.
+- Create the redispod image, with a mounted volume to mount path `/data`
+- Connect to the container and write some data.
+- Delete `redispod` and create a new pod named `redispod2`.
+- Verify the volume has persistent data.
 
 ## Create a PersistentVolume.
 1. Create the file, named redis-pv.yaml:
