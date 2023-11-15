@@ -1,5 +1,13 @@
 # Scheduling Pods with Taints and Tolerations in Kubernetes
+![image](https://github.com/zulfikar4568/docker-kubernetes/assets/64786139/43f0ab1b-2df6-49eb-81c4-c43dde8384f2)
+
 Within that cluster, we must perform the following tasks to taint the production node in order to repel work. We will create the necessary taint to properly label one of the nodes “prod.” Then, we will deploy two pods — one to each environment. One pod spec will contain the toleration for the taint.
+
+Objective:
+- Taint one of the worker nodes to repel work.
+- Schedule a pod to the dev environment.
+- Allow a pod to be scheduled to the prod environment.
+- Verify each pod has been scheduled and verify the toleration.
 
 ## Taint one of the worker nodes to repel work.
 
