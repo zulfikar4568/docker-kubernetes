@@ -1,5 +1,7 @@
 # Using Workload Identity on GKE
 
+![image](https://github.com/zulfikar4568/docker-kubernetes/assets/64786139/a5bccf56-f1c3-449a-b7e4-d45444378515)
+
 Running workloads with their own unique service identity in GCP allows you to exercise the security principle of least privilege: granting only the granular permissions required by a workload, and limiting the blast radius should it become compromised. With GKE Workload Identity, Kubernetes service accounts can be mapped to GCP service accounts to enable service identity authorization for requests to Google APIs and other services. In this lab, we will create a secret Cloud Run service and then map a service account to allow a GKE workload to access it.
 
 ## Deploy the Secret Service to Cloud Run
